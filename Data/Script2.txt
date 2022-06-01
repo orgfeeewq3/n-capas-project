@@ -1,0 +1,106 @@
+CREATE TABLE docente(
+	nombre VARCHAR(100) NOT NULL,
+	email VARCHAR(50) NOT NULL,
+	password VARCHAR(100) NOT NULL,
+	carnet INT,
+	PRIMARY KEY (carnet)
+);
+
+CREATE TABLE horario(
+	rango VARCHAR(30) NOT NULL,
+	id SERIAL,
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE docentexhorario(
+	carnet_docente INT NOT NULL,
+	id_horario INT NOT NULL,
+	FOREIGN KEY	(carnet_docente) REFERENCES docente(carnet),
+	FOREIGN KEY	(id_horario) REFERENCES horario(id)
+);
+
+CREATE TABLE tipo_consulta(
+	tipo_consulta VARCHAR(100) NOT NULL,
+	id SERIAL,
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE ciclo(
+	ciclo VARCHAR(30) NOT NULL,
+	id SERIAL,
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE materia(
+	nombre VARCHAR(50) NOT NULL,
+	id_ciclo INT NOT NULL,
+	id INT,
+	FOREIGN KEY	(id_ciclo) REFERENCES ciclo(id),
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE materiaxdocente(
+	carnet_docente INT NOT NULL,
+	id_materia INT NOT NULL,
+	FOREIGN KEY	(carnet_docente) REFERENCES docente(carnet),
+	FOREIGN KEY	(id_materia) REFERENCES materia(id)
+);
+
+CREATE TABLE facultad(
+	nombre VARCHAR(50) NOT NULL,
+	id SERIAL,
+	PRIMARY KEY (id)
+);
+
+
+CREATE TABLE carrera(
+	nombre VARCHAR(50) NOT NULL,
+	id_facultad INT NOT NULL,
+	id SERIAL,
+	FOREIGN KEY	(id_facultad) REFERENCES facultad(id),
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE carreraxmateria(
+	id_carrera INT NOT NULL,
+	id_materia INT NOT NULL,
+	FOREIGN KEY	(id_carrera) REFERENCES carrera(id),
+	FOREIGN KEY	(id_materia) REFERENCES materia(id)
+);
+
+CREATE TABLE estudiante(
+	nombre VARCHAR(50) NOT NULL,
+	id_carrera INT NOT NULL,
+	carnet INT,
+	email VARCHAR(50) NOT NULL,
+	password VARCHAR(100) NOT NULL,
+	FOREIGN KEY	(id_carrera) REFERENCES carrera(id),
+	PRIMARY KEY (carnet)
+
+);
+
+CREATE TABLE consulta(
+	carnet_estudiante INT NOT NULL,
+	id_materia INT NOT NULL,
+	carnet_docente INT NOT NULL,
+	id_tipo_consulta INT NOT NULL,
+	id SERIAL,
+	inicio TIMESTAMP NOT NULL,
+	final TIMESTAMP NOT NULL,
+	FOREIGN KEY	(id_tipo_consulta) REFERENCES tipo_consulta(id),
+	FOREIGN KEY	(carnet_estudiante) REFERENCES estudiante(carnet),
+	FOREIGN KEY	(carnet_docente) REFERENCES docente(carnet),
+	FOREIGN KEY	(id_materia) REFERENCES materia(id),
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE cola(
+	carnet_estudiante INT NOT NULL,
+	id_consulta INT NOT NULL,
+	id SERIAL,
+	inicio TIMESTAMP NOT NULL,
+	final TIMESTAMP NOT NULL,
+	FOREIGN KEY	(carnet_estudiante) REFERENCES estudiante(carnet),
+	FOREIGN KEY	(id_consulta) REFERENCES consulta(id),
+	PRIMARY KEY (id)
+);

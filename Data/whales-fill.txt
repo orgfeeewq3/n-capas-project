@@ -1,0 +1,109 @@
+INSERT INTO docente(nombre, email, password, carnet)
+VALUES 
+	('Daniel Sosa', 'dasosa@uca.edu.sv', 'dasosanet', 00034096),
+	('Iris Reina', 'rsiris@uca.edu.sv', 'root', 22346789),
+	('Nestor Aldana', 'nexxtor@uca.edu.sv', 'root', 00024096),
+	('Gustavo Espinoza', 'espino@uca.edu.sv', 'root', 01034096),
+	('Ronaldo canizales', 'roca@uca.edu.sv', 'roota', 23454093);
+	
+INSERT INTO horario(rango)
+VALUES 
+	('15:30 - 17:30'),
+	('10:00 - 12:00'),
+	('13:30 - 15:30'),
+	('09:30 - 11:30'),
+	('07:30 - 09:30');
+	
+INSERT INTO tipo_consulta(tipo_consulta)
+VALUES 
+	('Preguntas parcial'),
+	('Revision de proyecto'),
+	('revision parcial'),
+	('Peguntas de tarea'),
+	('Parcial diferido');
+	
+	
+INSERT INTO ciclo(ciclo)
+VALUES 
+	('01/2022'),
+	('01/2022'),
+	('01/2022'),
+	('01/2022'),
+	('01/2022');
+	
+	
+INSERT INTO facultad(nombre)
+VALUES 
+	('Ingenieria y arquitectura'),
+	('Ciencias sociales y humanidades'),
+	('Derecho'),
+	('Comunicaciones y Mercadeo'),
+	('Educación'),
+	('Gestión Empresarial y Economía');
+	
+INSERT INTO materia(nombre, id_ciclo, id)
+VALUES 
+('Calculo 3', (SELECT id from ciclo WHERE id=1), 024),
+('Discreta 2', (SELECT id from ciclo WHERE id=2), 073),
+('Web', (SELECT id from ciclo WHERE id=3), 021),
+('Calculo 1', (SELECT id from ciclo WHERE id=4), 012),
+('POO', (SELECT id from ciclo WHERE id=5), 015);
+
+INSERT INTO docentexhorario(carnet_docente, id_horario)
+VALUES
+((SELECT carnet from docente WHERE nombre='Daniel Sosa'), (SELECT id from horario WHERE rango='15:30 - 17:30')),
+((SELECT carnet from docente WHERE nombre='Iris Reina'), (SELECT id from horario WHERE rango='10:00 - 12:00')),
+((SELECT carnet from docente WHERE nombre='Nestor Aldana'), (SELECT id from horario WHERE rango='13:30 - 15:30')),
+((SELECT carnet from docente WHERE nombre='Gustavo Espinoza'), (SELECT id from horario WHERE rango='09:30 - 11:30')),
+((SELECT carnet from docente WHERE nombre='Ronaldo canizales'), (SELECT id from horario WHERE rango='07:30 - 09:30'));
+
+
+INSERT INTO materiaxdocente(carnet_docente, id_materia)
+VALUES
+((SELECT carnet from docente WHERE nombre='Daniel Sosa'), (SELECT id from materia WHERE nombre='Calculo 3')),
+((SELECT carnet from docente WHERE nombre='Iris Reina'), (SELECT id from materia WHERE nombre='Discreta 2')),
+((SELECT carnet from docente WHERE nombre='Nestor Aldana'), (SELECT id from materia WHERE nombre='Web')),
+((SELECT carnet from docente WHERE nombre='Gustavo Espinoza'), (SELECT id from materia WHERE nombre='Calculo 1')),
+((SELECT carnet from docente WHERE nombre='Ronaldo canizales'), (SELECT id from materia WHERE nombre='POO'));
+
+INSERT INTO carrera(nombre, id_facultad)
+VALUES 
+('Ingenieria informatica', (SELECT id from facultad WHERE nombre='Ingenieria y arquitectura')),
+('Ingenieria mecanica', (SELECT id from facultad WHERE nombre='Ingenieria y arquitectura')),
+('Ingenieria quimica', (SELECT id from facultad WHERE nombre='Ingenieria y arquitectura')),
+('Derecho', (SELECT id from facultad WHERE nombre='Derecho')),
+('Pedagogia', (SELECT id from facultad WHERE nombre='Educación'));
+
+INSERT INTO carreraxmateria(id_carrera, id_materia)
+VALUES
+((SELECT id from carrera WHERE nombre='Ingenieria informatica'), (SELECT id from materia WHERE nombre='Calculo 3')),
+((SELECT id from carrera WHERE nombre='Ingenieria informatica'), (SELECT id from materia WHERE nombre='Discreta 2')),
+((SELECT id from carrera WHERE nombre='Ingenieria informatica'), (SELECT id from materia WHERE nombre='Web')),
+((SELECT id from carrera WHERE nombre='Ingenieria informatica'), (SELECT id from materia WHERE nombre='Calculo 1')),
+((SELECT id from carrera WHERE nombre='Ingenieria informatica'), (SELECT id from materia WHERE nombre='POO'));
+
+INSERT INTO estudiante(carnet, nombre, email, password, id_carrera)
+VALUES 
+(00026012, 'Guillermo Lopez', '00026012@uca.edu.sv', 'root', (SELECT id from carrera WHERE nombre='Ingenieria informatica')),
+(00026212, 'Miguel Cruz', '00026212@uca.edu.sv', 'root', (SELECT id from carrera WHERE nombre='Ingenieria informatica')),
+(23026012, 'Alejandro Pinto', '23026012@uca.edu.sv', 'root', (SELECT id from carrera WHERE nombre='Ingenieria informatica')),
+(00022312, 'Jaime Serrano', '00022312@uca.edu.sv', 'root', (SELECT id from carrera WHERE nombre='Ingenieria informatica')),
+(02326012, 'Andres Funes', '02326012@uca.edu.sv', 'root', (SELECT id from carrera WHERE nombre='Ingenieria informatica'));
+
+INSERT INTO consulta(carnet_estudiante, id_materia, carnet_docente, id_tipo_consulta, inicio, final)
+VALUES 
+((SELECT carnet from estudiante WHERE nombre='Guillermo Lopez'), (SELECT id from materia WHERE nombre='Calculo 3'), (SELECT carnet from docente WHERE nombre='Daniel Sosa'), (SELECT id from tipo_consulta WHERE tipo_consulta='Preguntas parcial'), '2022-06-22 19:10:25-07', '2022-06-22 19:11:25-07'),
+((SELECT carnet from estudiante WHERE nombre='Miguel Cruz'), (SELECT id from materia WHERE nombre='Discreta 2'), (SELECT carnet from docente WHERE nombre='Iris Reina'), (SELECT id from tipo_consulta WHERE tipo_consulta='Revision de proyecto'), '2022-06-22 19:10:25-07', '2022-06-22 19:11:25-07'),
+((SELECT carnet from estudiante WHERE nombre='Alejandro Pinto'), (SELECT id from materia WHERE nombre='Web'), (SELECT carnet from docente WHERE nombre='Nestor Aldana'), (SELECT id from tipo_consulta WHERE tipo_consulta='revision parcial'), '2022-06-22 19:10:25-07', '2022-06-22 19:11:25-07'),
+((SELECT carnet from estudiante WHERE nombre='Jaime Serrano'), (SELECT id from materia WHERE nombre='Calculo 1'), (SELECT carnet from docente WHERE nombre='Gustavo Espinoza'), (SELECT id from tipo_consulta WHERE tipo_consulta='Peguntas de tarea'), '2022-06-22 19:10:25-07', '2022-06-22 19:11:25-07'),
+((SELECT carnet from estudiante WHERE nombre='Andres Funes'), (SELECT id from materia WHERE nombre='POO'), (SELECT carnet from docente WHERE nombre='Ronaldo canizales'), (SELECT id from tipo_consulta WHERE tipo_consulta='Parcial diferido'), '2022-06-22 19:10:25-07', '2022-06-22 19:11:25-07');
+
+INSERT INTO cola(carnet_estudiante, id_consulta, inicio, final)
+VALUES 
+((SELECT carnet from estudiante WHERE nombre='Guillermo Lopez'), (SELECT id from consulta WHERE id=1), '2022-06-22 19:10:25-07', '2022-06-22 19:11:25-07'),
+((SELECT carnet from estudiante WHERE nombre='Miguel Cruz'), (SELECT id from consulta WHERE id=2), '2022-06-22 19:10:25-07', '2022-06-22 19:11:25-07'),
+((SELECT carnet from estudiante WHERE nombre='Alejandro Pinto'), (SELECT id from consulta WHERE id=3), '2022-06-22 19:10:25-07', '2022-06-22 19:11:25-07'),
+((SELECT carnet from estudiante WHERE nombre='Jaime Serrano'), (SELECT id from consulta WHERE id=4), '2022-06-22 19:10:25-07', '2022-06-22 19:11:25-07'),
+((SELECT carnet from estudiante WHERE nombre='Andres Funes'), (SELECT id from consulta WHERE id=5), '2022-06-22 19:10:25-07', '2022-06-22 19:11:25-07');
+	
+	SELECT * FROM consulta;
