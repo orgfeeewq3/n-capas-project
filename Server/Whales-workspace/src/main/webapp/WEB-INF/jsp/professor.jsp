@@ -4,7 +4,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catedraticos</title>
-    <link rel="icon" href="img/big-logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,7 +33,8 @@
         }
 
         nav {
-            position: absolute;
+            display: flex;
+            position: relative;
             width: 100%;
             height: 55px;
             background-color: rgb(54, 92, 145);
@@ -42,7 +42,6 @@
 
         /*Branding*/
         .whales-workspace--branding {
-            display: block;
             min-width: 400px;
             position: absolute;
             color: rgb(255, 255, 255);
@@ -53,32 +52,31 @@
         }
 
         .menu-tittle {
-            display: block;
-            min-width: 400px;
-            position: absolute;
+            position: relative;
+            text-align: center;
             color: rgb(255, 255, 255);
             font-size: 2rem;
-            padding: 0 15px;
-            left: 40%;
-            top: 10%;
+            padding: 15px;
+            top: 15px;
         }
 
-        /*CSS botón hamburguesa*/
+        /*CSS botÃ³n hamburguesa*/
         .hamburger-menu {
             position: relative;
-            width: 25px;
-            height: 20px;
-            margin: 15px;
+            width: 24px;
+            height: 24px;
+            top: 5px;
+            left: 15px;
         }
 
         .hamburger-menu .hamburger-menu--line {
             width: 33px;
             height: 4px;
             background-color: rgb(255, 255, 255);
-            display: block;
+            display: flex;
             margin: 8px auto;
             transition: all 0.2s ease-in-out;
-            border-radius: 3px;
+            border-radius: 5px;
             z-index: 990;
         }
 
@@ -112,19 +110,16 @@
         }
 
         .accordion-menu {
-            padding-left: 0;
             display: block;
             position: absolute;
             max-width: 250px;
-            margin: 100px auto 20px;
+            margin: 25px auto 20px 10px;
             background-color: rgb(255, 255, 255);
-            border-radius: 5px;
+            border-radius: 10px;
             box-shadow: 3px 3px 3px;
-            z-index: 990;
             overflow-y: auto;
             overflow-x: hidden;
-            left: 15px;
-            top: -45px;
+            z-index: 990;
         }
 
         .accordion-menu {
@@ -149,7 +144,6 @@
 
         .dropdown {
             cursor: pointer;
-            display: block;
             padding: 15px 15px 15px 40px;
             font-size: 18px;
             border-bottom: 1px solid rgb(21, 27, 39);
@@ -159,13 +153,13 @@
         }
 
         .dropdown:hover {
-            background-color: rgb(103, 108, 123);
+            background-color: rgb(168, 178, 209);
         }
 
         .dropdown i {
             position: absolute;
             top: 17px;
-            left: 16px;
+            left: 15px;
         }
 
         .user-name {
@@ -179,7 +173,7 @@
         }
 
         .dropdown .fa-chevron-down {
-            right: 25px;
+            right: 30px;
             left: auto;
             transition: transform 0.2s ease-in-out;
         }
@@ -196,8 +190,9 @@
         .accordion-menu__el--sub div {
             display: block;
             color: rgb(255, 255, 255);
-            font-weight: 600;
-            padding: 12px 12px 12px 45px;
+            font-weight: 700;
+            padding: 12px 12px 12px 15px;
+            border-bottom: 1px solid rgb(255, 255, 255);
             transition: all 0.2s ease-out;
             text-decoration: none;
         }
@@ -210,7 +205,7 @@
         /*CSS Popup de Bookmark*/
         .overlay {
             background: rgba(0, 0, 0, 0.2);
-            position: fixed;
+            position: absolute;
             top: 0;
             bottom: 0;
             left: 0;
@@ -224,49 +219,54 @@
         .popup-bookmark {
             background-color: rgb(255, 255, 255);
             box-shadow: 1px 1px 5px 3px rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
-            padding: 30px;
-            width: 300px;
-            height: 200px;
+            border-radius: 10px;
+            padding: 1rem;
+            width: 250px;
+            height: 150px;
             color: rgb(60, 65, 79);
         }
 
         .popup-bookmark .btn-close-popup {
-            font-size: 16px;
-            line-height: 16px;
-            display: block;
-            text-align: right;
-            color: rgb(103, 108, 123);
+            position: relative;
+            left: 210px;
+            bottom: 25px;
+            font-size: 20px;
+            color: rgb(121, 131, 160);
+            border-radius: 1px;
             transition: all 0.3s ease;
         }
 
         .popup-bookmark .btn-close-popup:hover {
-            color: rgb(21, 27, 39);
+            color: rgb(0, 0, 0);
         }
 
         .popup-bookmark h1 {
             color: rgb(21, 27, 39);
             font-size: 1em;
-            font-weight: 600;
-            margin-bottom: 10px;
+            font-weight: 700;
+            margin-bottom: 15px;
             text-align: center;
         }
 
         .popup-bookmark p {
             font-size: 0.8em;
-            font-weight: 600;
+            font-weight: 700;
             line-height: 1.4em;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             text-align: center;
         }
 
         .popup-bookmark .go-to-consulting-room {
-            color: rgb(21, 27, 39);
+            background-color: rgb(0, 51, 99);
+            color: rgb(255, 255, 255);
+            border-radius: 10px;
             cursor: pointer;
             font-size: 1.5em;
             font-weight: bold;
-            width: 250px;
-            bottom: 20px;
+            letter-spacing: 1px;
+            width: 200px;
+            position: relative;
+            left: 10px;
             text-align: center;
         }
 
@@ -280,53 +280,54 @@
 
         /*CSS cartas de profesor*/
         .professor-container {
-            display: block;
+            display: flex;
+            flex-wrap: wrap;
             position: relative;
-            height: 100%;
-            top: 200px;
+            justify-content: center;
+            min-width: 400px;
         }
 
         .professor-card {
-            color: rgb(103, 108, 123);
-            width: 400px;
-            height: 300px;
+            color: rgb(121, 131, 160);
             background-color: rgb(255, 255, 255);
-            border-radius: 5px;
+            border-radius: 25px;
             box-shadow: 1px 1px 5px 3px rgba(0, 0, 0, 0.1);
             padding: 30px;
-            position: relative;
-            left: 25%;
             margin: 20px;
-            display: inline-block;
+            width: 400px;
+            height: 300px;
             transition: transform 0.3s;
         }
 
         .professor-card:hover {
-            transform: scale(1.2);
-            transition: transform 0.15s;
+            transform: scale(1.1);
+            transition: transform 0.3s;
         }
 
         .professor-card h1 {
             color: rgb(21, 27, 39);
-            font-size: 1em;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
             text-align: center;
         }
 
         .professor-card p {
-            font-size: 0.8em;
+            font-size: 1em;
             line-height: 1.4em;
             text-align: center;
         }
 
         .professor-card .go-to-consulting-room {
-            color: rgb(21, 27, 39);
             cursor: pointer;
+            background-color: rgb(0, 51, 99);
+            color: rgb(255, 255, 255);
             font-size: 1.5em;
+            padding: 5px;
+            width: 200px;
+            margin: 20px 70px;
+            border-radius: 10px;
             font-weight: bold;
             text-align: center;
-            width: 400px;
-            position: absolute;
-            bottom: 20px;
         }
 
         .professor-card .smile {
@@ -338,12 +339,12 @@
 
         /*Popup para entrar a la sala de espera*/
         .overlay-create-new-event {
-            background: rgba(0, 0, 0, 0.2);
-            position: fixed;
+            position: absolute;
             top: 0;
             bottom: 0;
             left: 0;
             right: 0;
+            background: rgba(0, 0, 0, 0.2);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -355,22 +356,23 @@
             box-shadow: 1px 1px 5px 3px rgba(0, 0, 0, 0.1);
             border-radius: 5px;
             padding: 30px;
-            width: 400px;
-            height: 250px;
-            color: rgb(60, 65, 79);
+            width: 350px;
+            height: 260px;
+            color: rgb(21, 27, 39);
         }
 
         .popup-creating-new-event .btn-close-popup {
-            font-size: 16px;
-            line-height: 16px;
-            display: block;
-            text-align: right;
-            color: rgb(103, 108, 123);
+            position: relative;
+            left: 290px;
+            bottom: 40px;
+            font-size: 20px;
+            color: rgb(121, 131, 160);
+            border-radius: 1px;
             transition: all 0.3s ease;
         }
 
         .popup-creating-new-event .btn-close-popup:hover {
-            color: rgb(21, 27, 39);
+            color: rgb(0, 0, 0);
         }
 
         .popup-creating-new-event p {
@@ -382,14 +384,14 @@
         }
 
         .popup-creating-new-event .go-to-waiting-room {
-            background-color: rgb(21, 27, 39);
+            background-color: rgb(0, 51, 99);
             color: rgb(255, 255, 255);
-            border-radius: 5px;
+            border-radius: 10px;
+            padding: 5px;
             cursor: pointer;
-            font-size: 1.2em;
+            font-size: 1.5em;
             font-weight: bold;
-            width: 350px;
-            bottom: 20px;
+            width: 310px;
             text-align: center;
         }
 
@@ -397,12 +399,11 @@
             width: 100%;
             margin-bottom: 10px;
             height: 50px;
-            line-height: 50px;
             font-size: 18px;
             text-align: center;
             border: none;
-            border-bottom: 1px solid rgb(103, 108, 123);
-            color: rgb(103, 108, 123);
+            border-bottom: 1px solid rgb(168, 178, 209);
+            color: rgb(121, 131, 160);
         }
 
         .overlay-create-new-event {
@@ -419,7 +420,7 @@
     <nav>
         <!--Contenedor del Menu hamburguesa-->
         <div class="menu-container">
-            <!--Botón hamburguesa-->
+            <!--BotÃ³n hamburguesa-->
             <div class="hamburger-menu" id="hamburger-menu-id">
                 <span class="hamburger-menu--line"></span>
                 <span class="hamburger-menu--line"></span>
@@ -462,7 +463,8 @@
         </div>
         <div class="whales-workspace--branding">Whale's Workspace</div>
     </nav>
-    <div class="menu-tittle">Programacion De N-Capas</div>
+
+    <div class="menu-tittle">Fundamentos De Programacion</div>
 
     <!--Cartas de profesor-->
     <div class="professor-container">
@@ -498,7 +500,7 @@
             <a href="#" id="btn-close-popup__w--id" class="btn-close-popup"><i class="fa-solid fa-xmark"></i></a>
             <p>Link de Google Meet</p>
             <div class="popup-input__container">
-                <input type="text" placeholder="Descripción">
+                <input type="text" placeholder="Descripcion">
                 <input type="text" placeholder="Invitados">
                 <div id="consulta" class="go-to-waiting-room">Entrar a la sala de espera</div>
             </div>
@@ -573,19 +575,18 @@
 
         (function click() {
             goToCR.addEventListener("click", () => {
+                overlay.classList.toggle("is-active");
                 overlayWR.classList.toggle("is-active");
             });
         })();
 
         document.getElementById("consulta").onclick = function () {
-        location.href = "queuing";
-      };
+            location.href = "queuing";
+        };
 
-      document.getElementById("out-session").onclick = function () {
-        location.href = "login";
-      };
-
-      
+        document.getElementById("out-session").onclick = function () {
+            location.href = "login";
+        };
     </script>
 </body>
 </html>
